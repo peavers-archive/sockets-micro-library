@@ -11,21 +11,9 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 @Configuration
-@EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    private final SimpMessagingTemplate webSocket;
-
     private final static String ENDPOINT = "/sockets";
-
-    public WebSocketConfig(SimpMessagingTemplate webSocket) {
-        this.webSocket = webSocket;
-    }
-
-    @Bean
-    public WebSocketService webSocketService() {
-        return new WebSocketServiceImpl(webSocket);
-    }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
